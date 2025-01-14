@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "366315722540",
+    "project_id": "ac-rental",
+    "storage_bucket": "ac-rental.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366315722540:android:eda3cbaac7bb3188843e89",
+        "android_client_info": {
+          "package_name": "com.example.ac_buy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9z3xV-eQx68y8YgSXfTdjJvWpQ2-WMng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366315722540:android:2ec3fbbe01d47655843e89",
+        "android_client_info": {
+          "package_name": "com.example.ac_rental"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9z3xV-eQx68y8YgSXfTdjJvWpQ2-WMng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
