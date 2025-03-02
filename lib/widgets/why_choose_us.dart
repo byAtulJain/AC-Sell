@@ -14,11 +14,10 @@ Widget buildWhyChooseUsSection(BoxConstraints constraints) {
           "Quality matters to you, and us! That's why we do a strict quality-check for every product.",
     },
     {
-      'icon':
-          'https://img.icons8.com/ios-filled/50/000000/marker--v1.png', // Online icon URL
-      'title': 'Free relocation',
+      'icon': 'https://img.icons8.com/ios-filled/50/000000/money-bag.png',
+      'title': 'Best value for money',
       'description':
-          "Changing your house or even your city? We'll relocate your rented products for free.",
+          "Enjoy competitive pricing without compromising on quality. We value your trust!",
     },
     {
       'icon':
@@ -29,10 +28,9 @@ Widget buildWhyChooseUsSection(BoxConstraints constraints) {
     },
     {
       'icon':
-          'https://img.icons8.com/ios-filled/50/000000/cancel.png', // Online icon URL
-      'title': 'Cancel anytime',
-      'description':
-          'Pay only for the time you use the product and close your subscription without any hassle.',
+          'https://img.icons8.com/?size=100&id=1390&format=png&color=000000', // Example of a local asset
+      'title': 'Reliable and Trusted',
+      'description': "Customers trust us for consistent, high-quality service.",
     },
     {
       'icon':

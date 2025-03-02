@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart'; // Add this import for email validation
 import '../main.dart';
 import 'footer_widget.dart';
+import 'home_page.dart';
 import 'login_page.dart';
 import 'products.dart';
 

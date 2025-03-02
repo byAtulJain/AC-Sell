@@ -24,7 +24,10 @@ class _EditProductPageState extends State<EditProductPage> {
   String? _selectedCategory;
   String? _selectedStarRating;
   final TextEditingController _companyNameController = TextEditingController();
+  final TextEditingController _modelNoController = TextEditingController();
+  final TextEditingController _conditionController = TextEditingController();
   final TextEditingController _areaCoveredController = TextEditingController();
+  final TextEditingController _quantityController = TextEditingController();
 
   List<Map<String, dynamic>> _categories = [];
   bool _isLoadingCategories = true;
@@ -71,7 +74,10 @@ class _EditProductPageState extends State<EditProductPage> {
             (category) => category['name'] == data['category'])['id'];
         _selectedStarRating = data['starRating'];
         _companyNameController.text = data['companyName'];
+        _modelNoController.text = data['modelNo'];
+        _conditionController.text = data['condition'];
         _areaCoveredController.text = data['areaCovered'];
+        _quantityController.text = data['quantity']; // Set quantity
         _uploadedImageUrls = List<String>.from(data['images']);
         _isLoadingProduct = false;
       });
@@ -109,7 +115,10 @@ class _EditProductPageState extends State<EditProductPage> {
           'price': _priceController.text,
           'starRating': _selectedStarRating,
           'companyName': _companyNameController.text,
+          'modelNo': _modelNoController.text,
+          'condition': _conditionController.text,
           'areaCovered': _areaCoveredController.text,
+          'quantity': _quantityController.text, // Add quantity
           'images': _uploadedImageUrls,
         };
 
@@ -383,6 +392,34 @@ class _EditProductPageState extends State<EditProductPage> {
                     ),
                     SizedBox(height: 16),
                     TextFormField(
+                      controller: _modelNoController,
+                      decoration: InputDecoration(
+                        labelText: 'Model No.',
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a model number';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16),
+                    TextFormField(
+                      controller: _conditionController,
+                      decoration: InputDecoration(
+                        labelText: 'Condition',
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the condition';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16),
+                    TextFormField(
                       controller: _areaCoveredController,
                       decoration: InputDecoration(
                         labelText: 'Area Covered (sq. ft.)',
@@ -393,6 +430,22 @@ class _EditProductPageState extends State<EditProductPage> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter the area covered';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16),
+                    TextFormField(
+                      controller: _quantityController,
+                      decoration: InputDecoration(
+                        labelText: 'Quantity',
+                        border: OutlineInputBorder(),
+                      ),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter the quantity';
                         }
                         return null;
                       },
@@ -429,7 +482,10 @@ class _EditProductPageState extends State<EditProductPage> {
   void dispose() {
     _priceController.dispose();
     _companyNameController.dispose();
+    _modelNoController.dispose();
+    _conditionController.dispose();
     _areaCoveredController.dispose();
+    _quantityController.dispose(); // Dispose quantity controller
     super.dispose();
   }
 }

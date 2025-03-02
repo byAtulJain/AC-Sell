@@ -5,6 +5,7 @@ import '../main.dart';
 import '../widgets/page_route.dart';
 import 'Admin Pages/add_product.dart';
 import 'Admin Pages/admin_dashboard.dart';
+import 'home_page.dart';
 import 'products.dart';
 import 'enquiry_page.dart';
 
@@ -64,7 +65,10 @@ class _LoginPageState extends State<LoginPage> {
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login Failed: $e')),
+        SnackBar(
+          content: Text('Invalid Credentials'),
+          backgroundColor: Colors.red,
+        ),
       );
     }
   }

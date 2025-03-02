@@ -7,6 +7,7 @@ import '../widgets/page_route.dart';
 import '../widgets/card_section.dart'; // Import the card_section.dart
 import 'enquiry_page.dart';
 import 'footer_widget.dart';
+import 'home_page.dart';
 import 'login_page.dart';
 
 class ProductsPage extends StatefulWidget {
@@ -71,7 +72,11 @@ class _ProductsPageState extends State<ProductsPage> {
                   'companyName': doc['companyName'],
                   'areaCovered': doc['areaCovered'],
                   'ton': doc['ton'],
+                  'quantity': doc['quantity'],
                   'images': doc['images'],
+                  'modelNo': doc['modelNo'] ?? 'N/A', // Provide default value
+                  'condition':
+                      doc['condition'] ?? 'N/A', // Provide default value
                 })
             .toList();
         _isLoadingProducts = false;
@@ -121,6 +126,14 @@ class _ProductsPageState extends State<ProductsPage> {
                 .toLowerCase()
                 .contains(_searchQuery.toLowerCase()) ||
             product['ton']
+                .toString()
+                .toLowerCase()
+                .contains(_searchQuery.toLowerCase()) ||
+            product['modelNo']
+                .toString()
+                .toLowerCase()
+                .contains(_searchQuery.toLowerCase()) ||
+            product['condition']
                 .toString()
                 .toLowerCase()
                 .contains(_searchQuery.toLowerCase());

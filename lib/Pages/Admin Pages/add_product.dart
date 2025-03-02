@@ -23,8 +23,11 @@ class _AddProductPageState extends State<AddProductPage> {
   String? _selectedCategory;
   String? _selectedStarRating;
   final TextEditingController _companyNameController = TextEditingController();
+  final TextEditingController _modelNoController = TextEditingController();
+  final TextEditingController _conditionController = TextEditingController();
   final TextEditingController _areaCoveredController = TextEditingController();
   final TextEditingController _tonController = TextEditingController();
+  final TextEditingController _quantityController = TextEditingController();
 
   List<Map<String, dynamic>> _categories = [];
   bool _isLoadingCategories = true;
@@ -77,8 +80,11 @@ class _AddProductPageState extends State<AddProductPage> {
           'price': _priceController.text,
           'starRating': _selectedStarRating,
           'companyName': _companyNameController.text,
+          'modelNo': _modelNoController.text,
+          'condition': _conditionController.text,
           'areaCovered': _areaCoveredController.text,
           'ton': _tonController.text,
+          'quantity': _quantityController.text, // Add quantity
           'images': _uploadedImageUrls,
           'timestamp': FieldValue.serverTimestamp(), // Add timestamp
         };
@@ -102,8 +108,11 @@ class _AddProductPageState extends State<AddProductPage> {
           _selectedCategory = null;
           _selectedStarRating = null;
           _companyNameController.clear();
+          _modelNoController.clear();
+          _conditionController.clear();
           _areaCoveredController.clear();
           _tonController.clear();
+          _quantityController.clear(); // Clear quantity
           _selectedImages.clear();
           _uploadedImageUrls.clear();
         });
@@ -264,7 +273,6 @@ class _AddProductPageState extends State<AddProductPage> {
                     ? Text('Loading categories...')
                     : Text('Select a category'),
               ),
-
               SizedBox(height: 16),
               TextFormField(
                 controller: _priceController,
@@ -322,6 +330,34 @@ class _AddProductPageState extends State<AddProductPage> {
               ),
               SizedBox(height: 16),
               TextFormField(
+                controller: _modelNoController,
+                decoration: InputDecoration(
+                  labelText: 'Model No.',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a model number';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16),
+              TextFormField(
+                controller: _conditionController,
+                decoration: InputDecoration(
+                  labelText: 'Condition',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter the condition';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16),
+              TextFormField(
                 controller: _areaCoveredController,
                 decoration: InputDecoration(
                   labelText: 'Area Covered (sq. ft.)',
@@ -354,7 +390,22 @@ class _AddProductPageState extends State<AddProductPage> {
                   return null;
                 },
               ),
-
+              SizedBox(height: 16),
+              TextFormField(
+                controller: _quantityController,
+                decoration: InputDecoration(
+                  labelText: 'Quantity / Available Pieces',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter the quantity';
+                  }
+                  return null;
+                },
+              ),
               SizedBox(height: 16),
               Container(
                 width: double.infinity,
@@ -387,8 +438,11 @@ class _AddProductPageState extends State<AddProductPage> {
   void dispose() {
     _priceController.dispose();
     _companyNameController.dispose();
+    _modelNoController.dispose();
+    _conditionController.dispose();
     _areaCoveredController.dispose();
     _tonController.dispose();
+    _quantityController.dispose(); // Dispose quantity controller
     super.dispose();
   }
 }

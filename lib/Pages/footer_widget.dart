@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:html' as html; // Add this for web support
 import 'Footer/BlogPage.dart';
 import 'Footer/FAQsPage.dart';
 import 'Footer/PrivacyPolicyPage.dart';
@@ -127,7 +129,7 @@ class AppFooter extends StatelessWidget {
                 children: [
                   _buildCopyrightText(isSmallScreen: isSmallScreen),
                   SizedBox(height: 16.0),
-                  // _buildSocialMediaIcons(),
+                  _buildSocialMediaIcons(),
                 ],
               ),
             ],
@@ -229,7 +231,7 @@ class AppFooter extends StatelessWidget {
             ),
           ),
           Text(
-            'Made with ❤️ by Atul Jain',
+            'Made with ❤️ by Atul Jain\n(atuljain3003@gmail.com)',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: isSmallScreen ? 12 : 14,
@@ -245,20 +247,23 @@ class AppFooter extends StatelessWidget {
     final List<Map<String, String>> socialMedia = [
       {
         'icon': 'https://img.icons8.com/ios-filled/50/ffffff/facebook.png',
-        'link': 'https://facebook.com'
+        'link': 'https://www.facebook.com/profile.php?id=61570457416123',
       },
-      // {
-      //   'icon': 'https://img.icons8.com/ios-filled/50/ffffff/twitter.png',
-      //   'link': 'https://twitter.com'
-      // },
       {
         'icon': 'https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png',
-        'link': 'https://instagram.com'
+        'link':
+            'https://www.instagram.com/theaconrent?igsh=MXRxam0yMXB1YzRybg==',
       },
-      // {
-      //   'icon': 'https://img.icons8.com/ios-filled/50/ffffff/linkedin.png',
-      //   'link': 'https://linkedin.com'
-      // },
+      {
+        'icon':
+            'https://s3.ap-southeast-1.amazonaws.com/s3.privyr.com/assets/integrations/JustDial+Logo.png',
+        'link': 'https://jsdl.in/RSL-GBD1737286926',
+      },
+      {
+        'icon':
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png',
+        'link': 'https://g.co/kgs/7FRRttH',
+      },
     ];
 
     return Row(
@@ -267,8 +272,20 @@ class AppFooter extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: GestureDetector(
-            onTap: () {
-              print('Navigate to ${platform['link']}');
+            onTap: () async {
+              final url = platform['link']!;
+              if (kIsWeb) {
+                // Use JavaScript to open the link in a new tab for Flutter Web
+                html.window.open(url, '_blank');
+              } else {
+                // Use url_launcher for other platforms
+                if (await canLaunchUrl(Uri.parse(url))) {
+                  await launchUrl(Uri.parse(url),
+                      mode: LaunchMode.externalApplication);
+                } else {
+                  print('Could not launch $url');
+                }
+              }
             },
             child: Image.network(
               platform['icon']!,

@@ -10,18 +10,24 @@ class DetailPage extends StatelessWidget {
   final String category;
   final String starRating;
   final String companyName;
+  final String modelNo; // Add modelNo field
+  final String condition; // Add condition field
   final String areaCovered;
   final String ton;
   final String price;
+  final String quantity;
 
   DetailPage({
     required this.images,
     required this.category,
     required this.starRating,
     required this.companyName,
+    required this.modelNo, // Add modelNo field
+    required this.condition, // Add condition field
     required this.areaCovered,
     required this.ton,
     required this.price,
+    required this.quantity,
   });
 
   @override
@@ -166,6 +172,24 @@ class DetailPage extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8),
+        // Model No.
+        Text(
+          'Model No: $modelNo',
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.black,
+          ),
+        ),
+        SizedBox(height: 8),
+        // Condition
+        Text(
+          'Condition: $condition',
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.black,
+          ),
+        ),
+        SizedBox(height: 8),
         // Area Covered
         Text(
           'Area Covered: $areaCovered sq. ft.',
@@ -178,6 +202,15 @@ class DetailPage extends StatelessWidget {
         // Ton
         Text(
           'Ton: $ton Ton',
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.black,
+          ),
+        ),
+        SizedBox(height: 8),
+        // Ton
+        Text(
+          'Quantity: $quantity Pieces',
           style: TextStyle(
             fontSize: 18,
             color: Colors.black,
